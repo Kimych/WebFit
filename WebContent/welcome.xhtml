@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+	<ui:define name="content">
+		<h:form>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="User:"></h:outputLabel>
+				<h:outputLabel value="#{authorizationBean.objWorfer}"></h:outputLabel>
+				<h:outputLabel value="Last update:"></h:outputLabel>
+				<h:outputLabel value="#{authorizationBean.lastUpdateDate}"></h:outputLabel>
+				<h:outputLabel value="Current time:"></h:outputLabel>
+				<h:outputLabel value="#{authorizationBean.сurentTime}"></h:outputLabel>
+				<h:outputLabel value="To plane:"></h:outputLabel>
+				<h:outputLabel value="#{authorizationBean.toPlane}"></h:outputLabel>
+				<h:outputLabel value="To bonus:"></h:outputLabel>
+				<h:outputLabel value="#{authorizationBean.toBonus}"></h:outputLabel>
+				<h:outputLabel value="Holiday:"></h:outputLabel>
+				<h:outputLabel value="#{authorizationBean.timeLeft}"></h:outputLabel>
+			</h:panelGrid>
+			<!-- <h:commandButton value="View history" action="history"></h:commandButton> -->
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

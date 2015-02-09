@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+	
+	<ui:define name="content">
+	    <h:body> 
+   <h2>History</h2>
+   <h:form>
+      <h:dataTable value="#{userHistoryBean.lslDaysOfWorks}" var="data">
+         
+         <h:column>    				
+            <f:facet name="header">Update</f:facet>  
+            #{data.timestamp}
+         </h:column>
+         <h:column>
+            <f:facet name="header">From Log</f:facet>
+            #{data.worklog}
+         </h:column>
+         <h:column>
+            <f:facet name="header">Bonus</f:facet>
+            #{data.bonusTime}
+         </h:column>
+         <h:column>
+            <f:facet name="header">Working Day</f:facet>
+            #{data.aktualWorkedDays}
+         </h:column>
+      </h:dataTable>
+   </h:form>
+   </h:body>
+	</ui:define>
+	
+</ui:composition>
+</html>

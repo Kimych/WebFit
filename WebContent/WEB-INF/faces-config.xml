@@ -14,6 +14,11 @@
 		<managed-bean-class>com.webfit.AuthorizationBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>userHistoryBean</managed-bean-name>
+		<managed-bean-class>com.webfit.UserHistoryBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<navigation-rule>
 		<display-name>login.xhtml</display-name>
 		<from-view-id>/login.xhtml</from-view-id>
@@ -22,5 +27,14 @@
 			<to-view-id>/welcome.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<display-name>welcome.xhtml</display-name>
+		<from-view-id>/welcome.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>history</from-outcome>
+			<to-view-id>/userHistory.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
 
 </faces-config>

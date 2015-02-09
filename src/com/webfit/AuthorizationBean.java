@@ -132,6 +132,7 @@ public class AuthorizationBean
         Authorization auth = checkLogin(login, password, autEAO);
         if (auth != null)
         {
+            SystemModel.setAuthorization(auth);
             this.objWorfer = auth.getWorker();
             this.objInfoHelper = WorkLogInfoHelper.getLogListUpToDateAndWorker(objWorfer, new Date());
             return objWorfer.toString();

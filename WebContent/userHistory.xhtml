@@ -7,33 +7,36 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
-	
+
+
 	<ui:define name="content">
-	    <h:body> 
-   <h2>History</h2>
-   <h:form>
-      <h:dataTable value="#{userHistoryBean.lslDaysOfWorks}" var="data">
-         
-         <h:column>    				
-            <f:facet name="header">Update</f:facet>  
-            #{data.timestamp}
-         </h:column>
-         <h:column>
-            <f:facet name="header">From Log</f:facet>
+		<h:body>
+			<h3>History</h3>
+			<h:form>
+				<h:dataTable value="#{userHistoryBean.lstUserHistory}" var="data"
+					styleClass="employeeTable" bodyClass="employeeTableHeader"
+					rowClasses="employeeTableOddRow,employeeTableEvenRow">
+
+					<h:column>
+						<f:facet name="header">From Log</f:facet>
             #{data.worklog}
          </h:column>
-         <h:column>
-            <f:facet name="header">Bonus</f:facet>
+					<h:column>
+						<f:facet name="header">Bonus</f:facet>
             #{data.bonusTime}
          </h:column>
-         <h:column>
-            <f:facet name="header">Working Day</f:facet>
+					<h:column>
+						<f:facet name="header">Working Day</f:facet>
             #{data.aktualWorkedDays}
          </h:column>
-      </h:dataTable>
-   </h:form>
-   </h:body>
+					<h:column>
+						<f:facet name="header">Update</f:facet>  
+            #{data.timestamp}
+         </h:column>
+				</h:dataTable>
+			</h:form>
+		</h:body>
 	</ui:define>
-	
+
 </ui:composition>
 </html>

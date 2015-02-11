@@ -3,6 +3,8 @@ package com.webfit;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -22,11 +24,12 @@ public class UserHistoryBean implements Serializable
     /** TODO document <code>serialVersionUID</code> */
     private static final long serialVersionUID = 1L;
 
-    private List<UserHistoryData> lstUserHistory = new ArrayList<UserHistoryData>();
+    private List<UserHistoryData> lstUserHistory;
+    private boolean sortAscending = true;
 
     public List<UserHistoryData> getLstUserHistory()
     {
-        lstUserHistory.clear();
+        lstUserHistory = new ArrayList<UserHistoryData>();
         DaysOfWorkEAO dofEAO = new DaysOfWorkEAO(SystemModel.getDefaultEM());
         List<DaysOfWork> lslDaysOfWorks = dofEAO.finAllByWorker(SystemModel.getAuthorization().getWorker());
         for (DaysOfWork daysOfWork : lslDaysOfWorks)
@@ -39,6 +42,47 @@ public class UserHistoryBean implements Serializable
     public void setLstUserHistory(List<UserHistoryData> lslUSerHistory)
     {
         this.lstUserHistory = lslUSerHistory;
+    }
+
+    public String sortByTimestamp()
+    {
+
+        if (sortAscending)
+        {
+            Collections.sort(lstUserHistory, new Comparator<UserHistoryData>()
+            {
+
+                @Override
+                public int compare(UserHistoryData objUserHistory1, UserHistoryData objUserHistory2)
+                {
+
+                    return objUserHistory1.getTimestamp().compareTo(objUserHistory2.getTimestamp());
+
+                }
+
+            });
+            sortAscending = false;
+
+        }
+        else
+        {
+            // descending order
+            Collections.sort(lstUserHistory, new Comparator<UserHistoryData>()
+            {
+
+                @Override
+                public int compare(UserHistoryData objUserHistory1, UserHistoryData objUserHistory2)
+                {
+
+                    return objUserHistory2.getTimestamp().compareTo(objUserHistory1.getTimestamp());
+
+                }
+
+            });
+            sortAscending = true;
+        }
+
+        return null;
     }
 
     public static class UserHistoryData

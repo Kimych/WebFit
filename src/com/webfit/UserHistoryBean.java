@@ -31,12 +31,12 @@ public class UserHistoryBean implements Serializable
         lstUserHistory = new ArrayList<UserHistoryData>();
         DaysOfWorkEAO dofEAO = new DaysOfWorkEAO(SystemModel.getDefaultEM());
         List<DaysOfWork> lslDaysOfWorks = dofEAO.finAllByWorker(SystemModel.getAuthorization().getWorker());
+        // sort in descending order
+        Collections.sort(lslDaysOfWorks, Collections.reverseOrder());
         for (DaysOfWork daysOfWork : lslDaysOfWorks)
         {
             lstUserHistory.add(new UserHistoryData(daysOfWork));
         }
-        // sort in descending order
-        Collections.sort(lstUserHistory, Collections.reverseOrder());
         return lstUserHistory;
     }
 
@@ -45,12 +45,13 @@ public class UserHistoryBean implements Serializable
         this.lstUserHistory = lslUSerHistory;
     }
 
-    public void sortByTimestamp()
+    public String sortByTimestamp()
     {
         Collections.reverse(lstUserHistory);
+        return "";
     }
 
-    public static class UserHistoryData implements Comparable<UserHistoryData>
+    public static class UserHistoryData
     {
         String timestamp;
         String worklog;
@@ -103,12 +104,6 @@ public class UserHistoryBean implements Serializable
         public void setAktualWorkedDays(int aktualWorkedDays)
         {
             this.aktualWorkedDays = aktualWorkedDays;
-        }
-
-        @Override
-        public int compareTo(UserHistoryData arg0)
-        {
-            return timestamp.compareTo(arg0.getTimestamp());
         }
     }
 

@@ -25,7 +25,6 @@ public class UserHistoryBean implements Serializable
     private static final long serialVersionUID = 1L;
 
     private List<UserHistoryData> lstUserHistory;
-    private boolean sortAscending = true;
 
     public List<UserHistoryData> getLstUserHistory()
     {
@@ -36,6 +35,8 @@ public class UserHistoryBean implements Serializable
         {
             lstUserHistory.add(new UserHistoryData(daysOfWork));
         }
+        // sort in descending order
+        Collections.sort(lstUserHistory, Collections.reverseOrder());
         return lstUserHistory;
     }
 
@@ -44,48 +45,12 @@ public class UserHistoryBean implements Serializable
         this.lstUserHistory = lslUSerHistory;
     }
 
-    public String sortByTimestamp()
+    public void sortByTimestamp()
     {
-
-        if (sortAscending)
-        {
-            Collections.sort(lstUserHistory, new Comparator<UserHistoryData>()
-            {
-
-                @Override
-                public int compare(UserHistoryData objUserHistory1, UserHistoryData objUserHistory2)
-                {
-
-                    return objUserHistory1.getTimestamp().compareTo(objUserHistory2.getTimestamp());
-
-                }
-
-            });
-            sortAscending = false;
-
-        }
-        else
-        {
-            // descending order
-            Collections.sort(lstUserHistory, new Comparator<UserHistoryData>()
-            {
-
-                @Override
-                public int compare(UserHistoryData objUserHistory1, UserHistoryData objUserHistory2)
-                {
-
-                    return objUserHistory2.getTimestamp().compareTo(objUserHistory1.getTimestamp());
-
-                }
-
-            });
-            sortAscending = true;
-        }
-
-        return null;
+        Collections.reverse(lstUserHistory);
     }
 
-    public static class UserHistoryData
+    public static class UserHistoryData implements Comparable<UserHistoryData>
     {
         String timestamp;
         String worklog;
@@ -138,6 +103,12 @@ public class UserHistoryBean implements Serializable
         public void setAktualWorkedDays(int aktualWorkedDays)
         {
             this.aktualWorkedDays = aktualWorkedDays;
+        }
+
+        @Override
+        public int compareTo(UserHistoryData arg0)
+        {
+            return timestamp.compareTo(arg0.getTimestamp());
         }
     }
 

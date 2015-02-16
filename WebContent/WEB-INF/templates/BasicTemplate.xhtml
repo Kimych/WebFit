@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<title><ui:insert name="title" >WorkFit 0.9</ui:insert></title>
+<link rel="stylesheet" type="text/css" href="styles.css" />
+</head>
+<body>
+<div  id="container">
+	<div id="header" >
+		<ui:insert name="header">
+			<ui:include src="/WEB-INF/templates/header.xhtml" />
+		</ui:insert>
+	</div>
+	<div id="content" align="center">
+		<ui:insert name="content">
+		</ui:insert>
+	</div>
+	<div id="footer">
+		<ui:insert name="footer">
+			<ui:include src="/WEB-INF/templates/footer.xhtml" />
+		</ui:insert>
+	</div>
+	</div>
+</body>
+
+</html>

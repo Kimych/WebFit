@@ -1,21 +1,25 @@
-.dataTable{   
-   border-collapse:collapse;
-   border:1px solid #000000;
+html, body {
+margin:0;
+   padding:0;
+   height:100%;
+   }
+#container {
+  min-height:100%;
+   position:relative;
+}
+#header {
+  background:#ff0;
+  padding:10px;
+}
+#body {
+  padding:10px;
+   padding-bottom:60px;
+}
+#footer {
+  position:absolute;
+   bottom:0;
+   width:100%;
+   height:60px;  
+   background:#6cf;
 }
 
-.dataTableHeader{
-   text-align:center;
-   background:none repeat scroll 0 0 #B5B5B5;
-   border-bottom:1px solid #000000;  
-   padding:2px;
-}
-
-.dataTableOddRow{
-   text-align:center;
-   background:none repeat scroll 0 0 #FFFFFFF;	
-}
-
-.dataTableEvenRow{
-   text-align:center;
-   background:none repeat scroll 0 0 #D3D3D3;
-}

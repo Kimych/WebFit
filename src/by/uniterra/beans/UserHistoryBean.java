@@ -7,7 +7,8 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
 
 import by.uniterra.dai.eao.DaysOfWorkEAO;
 import by.uniterra.dai.entity.DaysOfWork;
@@ -16,7 +17,7 @@ import by.uniterra.system.util.DateUtils;
 import by.uniterra.system.util.WorkLogUtils;
 
 @ManagedBean(name = "userHistoryBean")
-@SessionScoped
+@ViewScoped
 public class UserHistoryBean implements Serializable
 {
 
@@ -24,12 +25,27 @@ public class UserHistoryBean implements Serializable
     private static final long serialVersionUID = 1L;
 
     private List<UserHistoryData> lstUserHistory;
+    
+    @ManagedProperty(value="#{authorizationBean}")
+    private AuthorizationBean authorizationBean;
+    
+    public AuthorizationBean getAuthorizationBean()
+    {
+        return authorizationBean;
+    }
+
+    public void setAuthorizationBean(AuthorizationBean authorizationBean)
+    {
+        this.authorizationBean = authorizationBean;
+    }
+    
 
     public List<UserHistoryData> getLstUserHistory()
     {
         lstUserHistory = new ArrayList<UserHistoryData>();
         DaysOfWorkEAO dofEAO = new DaysOfWorkEAO(SystemModel.getDefaultEM());
-        List<DaysOfWork> lslDaysOfWorks = dofEAO.finAllByWorker(SystemModel.getAuthorization().getWorker());
+       /* List<DaysOfWork> lslDaysOfWorks = dofEAO.finAllByWorker(SystemModel.getAuthorization().getWorker());*/
+        List<DaysOfWork> lslDaysOfWorks = dofEAO.finAllByWorker(authorizationBean.getWorker());
         // sort in descending order
         Collections.sort(lslDaysOfWorks, Collections.reverseOrder());
         for (DaysOfWork daysOfWork : lslDaysOfWorks)
@@ -105,5 +121,4 @@ public class UserHistoryBean implements Serializable
             this.aktualWorkedDays = aktualWorkedDays;
         }
     }
-
 }

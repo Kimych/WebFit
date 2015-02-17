@@ -18,6 +18,11 @@
 		<managed-bean-name>userHistoryBean</managed-bean-name>
 		<managed-bean-class>by.uniterra.beans.UserHistoryBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>authorizationBean</property-name>
+			<property-class>by.uniterra.beans.AuthorizationBean</property-class>
+			<value>#{authorizationBean}</value>
+		</managed-property>
 	</managed-bean>
 	<navigation-rule>
 		<display-name>login.xhtml</display-name>

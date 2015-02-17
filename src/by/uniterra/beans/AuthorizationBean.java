@@ -1,11 +1,11 @@
 package by.uniterra.beans;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 
 import by.uniterra.dai.eao.AuthorizationEAO;
 import by.uniterra.dai.entity.Authorization;
@@ -18,10 +18,12 @@ import by.uniterra.udi.model.WorkLogInfoHolder;
 import by.uniterra.udi.util.Cryptor;
 
 @ManagedBean(name = "authorizationBean")
-@SessionScoped
-public class AuthorizationBean
+public class AuthorizationBean implements Serializable
 {
 
+    /** TODO document <code>serialVersionUID</code> */
+    private static final long serialVersionUID = 1L;
+    
     String login;
     String password;
     Worker objWorfer;
@@ -34,6 +36,8 @@ public class AuthorizationBean
     String timeLeft;
     
     WorkLogInfoHolder objInfoHelper;
+    
+    
 
     public String getLogin()
     {
@@ -65,9 +69,9 @@ public class AuthorizationBean
         this.objWorfer = objWorfer;
     }
 
-    public static Worker getWorker()
+    public Worker getWorker()
     {
-        return null;
+        return this.objWorfer;
 
     }
 
@@ -132,7 +136,6 @@ public class AuthorizationBean
         Authorization auth = checkLogin(login, password, autEAO);
         if (auth != null)
         {
-            SystemModel.setAuthorization(auth);
             this.objWorfer = auth.getWorker();
             this.objInfoHelper = WorkLogInfoHelper.getLogListUpToDateAndWorker(objWorfer, new Date());
             return objWorfer.toString();
@@ -144,7 +147,7 @@ public class AuthorizationBean
         }
 
     }
-
+    
     
     private Authorization checkLogin(String strUserName, String strPassword, AuthorizationEAO autEAO)
     {
@@ -159,5 +162,6 @@ public class AuthorizationBean
             return null;
         }
     }
+
 
 }

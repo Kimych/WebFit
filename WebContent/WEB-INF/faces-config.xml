@@ -24,7 +24,7 @@
 			<value>#{authorizationBean}</value>
 		</managed-property>
 	</managed-bean>
-	<navigation-rule>
+		<navigation-rule>
 		<display-name>login.xhtml</display-name>
 		<from-view-id>/login.xhtml</from-view-id>
 		<navigation-case>

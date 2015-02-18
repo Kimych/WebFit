@@ -143,7 +143,7 @@ public class AuthorizationBean implements Serializable
         else
         {
             objInfoHelper = new WorkLogInfoHolder("data not foud", 0, 0, 0, null, null, 0);
-            return "User not found!!!";
+            return "User not found!";
         }
 
     }
